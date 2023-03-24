@@ -121,3 +121,4 @@ Para loguearse con un usuario que no sea admin, usar el usuario Eneas y el pass 
 Para ver las pruebas realizadas, ir a la carpeta tests, y abrir el archivo Casos de prueba.xlsx
 
 ## Video Demostración
+https://drive.google.com/file/d/1ThqxPRr1oXoMsJvmPwca9CFoctclrADu/view
