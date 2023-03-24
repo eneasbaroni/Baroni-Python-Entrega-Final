@@ -2,6 +2,15 @@
 
 Pre-entrega del curso de Python en CoderHouse
 
+## Descripción del proyecto
+
+El proyecto es un sitio web para un estudio de arquitectura, y cuenta con Cuatro modelos. Obras, Clientes, Equipo y Usuarios.
+
+En el sitio web se pueden ver las obras realizadas, y el equipo que integra el estudio.
+Ademas, el usuario puede registrarse y loguearse, y acceder a su perfil, donde puede editar sus datos.
+Si el usuario es admin, puede acceder a la seccion de clientes, como así tambien a la de edicion, creacion y eliminacion de obras y miembros del equipo.
+
+
 ## Instalación
 
 1. Forkeá y cloná el repositorio
