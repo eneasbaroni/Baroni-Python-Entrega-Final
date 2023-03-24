@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Registro de Usuario {% endblock %}
+{% block content %}
+<section class="section">
+  {% if request.method == "GET"%} 
+  
+    <!-- AGREGAR PERMISO ADMINISTRADOR ->if request.user.is_superuser--> 
+    <main id="form">
+
+      <h1>REGISTRARSE</h1> 
+        <div class="formContainer">
+          <form action="" method="POST" enctype="multipart/form-data"> <!-- en acction no va nada ya que utiliza la misma url -->
+  
+            {% csrf_token %} 
+            <legend>FORMULARIO DE REGISTRO</legend>
+  
+            <table>
+              {{ form.as_table }} <!-- Formulario de Django -->
+            </table> 
+              
+            <div class="form-group">
+              <button type="submit" className="addBtn">REGISTRAR</button>
+            </div>
+            
+          </form>
+          
+        </div>         
+        
+    </main>
+
+  {% else %}
+
+    <main>
+
+      <div class="mainLinks createPage">
+        {%if message %} <!-- manejo de errores que envai django al verificar el formulario -->
+          <h1>ERROR AL REGISTRARSE</h1> 
+          <h2>{{ message }}</h2>  
+          <a href="/accounts/signup">Volver a Formulario</a>
+        {% else %}
+          <h1>USUARIO REGISTRADO</h1>
+          <a href="/accounts/login">Ir a Login</a>
+        {% endif %}
+      </div>
+      
+    </main>
+      
+  {% endif %}
+
+</section>
+{% endblock %}

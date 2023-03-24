@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} {{obra.name}} {% endblock %}
+{% block content %}
+
+  <main id="obra">  
+    
+    <div class="obraContainer">
+      <h1>{{obra.name|upper}}</h1>      
+        
+      {%if obra.image%} <!-- verifico que haya una imagen para que no se genere error -->
+        <img src="{{obra.image.url}}" alt="imagen de la obra">        
+      {%endif%}         
+
+      <p>Precio: U$D{{obra.price}}</p>
+      <p>Superficie: {{obra.area}}m²</p>
+      <p>Descripcion: {{obra.description}}</p>          
+      <p>Apto Credito: 
+        {% if obra.credit == True %}
+          Si
+        {% else %}
+          No
+        {% endif %}
+      </p>  
+      
+      {%if request.user.is_superuser%}
+        <div class="listBtnsContainer">
+          <button class="editBtn">
+            <a href="/obras/edit-obra/{{obra.id}}">EDITAR</a>           
+          </button>
+          <button class="deleteBtn">
+            <a href="/obras/delete-obra/{{obra.id}}">ELIMINAR</a>
+          </button>
+        </div>
+      {%endif%}
+
+      <!-- <a href="mailto:lepost@gmail.com" class="contactBtn">Contactar por Obra</a> -->
+      <a href="/obras/list-obras" class="contactBtn">Volver a Obras</a>           
+
+    </div>     
+    
+  </main>
+{% endblock %}
+  

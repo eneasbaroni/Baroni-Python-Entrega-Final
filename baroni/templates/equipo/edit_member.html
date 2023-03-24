@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Editar Miembro {% endblock %}
+{% block content %}
+<section class="section">
+  {% if request.method == "GET"%}  
+  
+    <!-- El permiso de superusuario se maneja desde views.py --> 
+    <main id="form">
+
+      <h1>EDITAR MIEMBRO</h1> 
+        <div class="formContainer">
+          <form action="" method="POST" enctype="multipart/form-data"> <!-- en acction no va nada ya que utiliza la misma url -->
+  
+            {% csrf_token %} 
+            <legend>FORMULARIO DE EDICION</legend>
+  
+            <table>
+              {{ form.as_table }} <!-- Formulario de Django -->
+            </table> 
+              
+            <div class="form-group">
+              <button type="submit" className="addBtn">EDITAR</button>
+            </div>
+                        
+          </form>
+          
+        </div> 
+        <div class="mainLinks">
+          <a href="/equipo/list-equipo">Volver a Equipo</a>
+        </div>
+    </main>    
+
+  {% else %}
+
+    <main>
+      <div class="mainLinks createPage">
+        {%if message %} <!-- manejo de errores que envai django al verificar el formulario -->
+          <h1>ERROR AL EDITAR MIEMBRO</h1> 
+          <h2>{{ message }}</h2>  
+          <a href="/equipo/edit-member/{{id}}">Volver a Formulario</a>
+        {% else %}
+          <h1>MIEMBRO EDITADO</h1>  
+          <a href="/equipo/list-equipo">Ir a Equipo</a>
+        {% endif %}
+      </div>      
+    </main>
+      
+  {% endif %}
+
+</section>
+{% endblock %}

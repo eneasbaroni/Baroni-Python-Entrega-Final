@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} Eliminar Obra {% endblock %}
+{% block content %}
+<main id="obras">  
+  {% if request.method == "GET"%}
+
+    {%if request.user.is_superuser%}
+    
+    <h1>ELIMINAR OBRA</h1> 
+    
+      <a href="/obras/list-obras">Listado de Obras</a>
+      <h2>¿Esta seguro que desea eliminar la obra {{obra.name}}?</h2>
+      <form action="" method="POST"> <!-- en acction no va nada ya qeu utiliza la misma url -->
+        {% csrf_token %}
+        <div class="form-group">
+          <button type="submit" className="addBtn">Eliminar</button>
+        </div>
+      </form> 
+    
+    {% else %}
+      <main>
+        <div class="mainLinks createPage">
+          <h1>NO TIENES PERMISOS PARA EDITAR OBRAS</h1>
+          <a href="/obras/list-obras">Volver a Obras</a>
+        </div>
+      </main>
+    {% endif %}
+
+  {% else %}
+    <h1>OBRA ELIMINADA</h1>  
+    <a href="/obras/list-obras">Listado de Obras</a>
+  {% endif %}
+  
+    </main>
+{% endblock %}
+  

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Equipo {% endblock %}
+{% block content %}
+
+  <main id="equipo">  
+    
+    <h1>EQUIPO</h1>
+    <div class="equipoContainer">
+      {%for el in equipo%}
+      
+        <a class="member" href="/equipo/member-detail/{{el.id}}"> 
+
+          {%if el.image%}            
+            <img src="{{el.image.url}}" alt="imagen del miembro">   
+          {%endif%}     
+                   
+          <div class="memberInfo">
+            <h3> {{el.name|upper}}<br/>{{el.last_name|upper}}</h3>   
+            <p>{{el.position}}</p>           
+          </div>
+            
+        </a>
+
+      {% endfor %}
+
+    </div>  
+
+    <div class="mainLinks">
+      
+      {%if request.user.is_superuser%}
+        <a href="/equipo/create-member">Crear Miembro</a>  
+      {%endif%}       
+      <a href="/">Volver a Inicio</a>
+    </div>
+   
+    
+  </main>
+{% endblock %}
+  

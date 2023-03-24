@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Obras {% endblock %}
+{% block content %}
+
+  <main id="obras">  
+    
+    <h1>OBRAS</h1>
+    <div class="obrasContainer">
+      
+      {%for el in obras%}
+        <div class="obra">      
+          <p class="obraId">{{el.id}}</p>
+          <h3>{{el.name}}</h3>
+
+          {%if el.image%} <!-- verifico que haya una imagen para que no se genere error -->
+            <img src="{{el.image.url}}" alt="imagen de la obra">        
+          {%endif%}             
+          
+          <p>{{el.area}}m²</p>
+          <p>Descripcion: {{el.description}}</p> 
+          
+          <a href="/obras/obra-detail/{{el.id}}" class="contactBtn">Ver Obra +</a>    
+
+        </div>
+      {% endfor %}
+
+    </div> 
+    
+    <div class="mainLinks">
+      <!-- AGREGAR PERMISO PARA ADMINISTRADO  -> if request.user.is_superuser-->
+      {%if request.user.is_superuser%}
+        <a href="/obras/create-obra">Crear Obra</a>  
+      {%endif%}       
+      <a href="/">Volver a Inicio</a>  
+    </div>
+
+
+   
+    
+  </main>
+{% endblock %}
+  

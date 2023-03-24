@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+  <main>     
+    <div class="homeContainer">
+        <div>
+            <h1>LEPOST <br/> ARQUITECTURA</h1>        
+        </div>
+        {% load static %} 
+        <div class="homeImgContainer">
+          <img class="homeImg" src="{% static 'images/home2.png' %}" alt="home">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, aperiam excepturi? Doloremque vel recusandae odit qui eaque alias et minus inventore eligendi esse, fuga natus rem voluptas aperiam consequatur. Illum, saepe laudantium consectetur omnis tempora, sint similique explicabo cumque placeat ea nam corporis atque iusto fugit aliquam illo accusantium voluptates sequi laborum repellat veritatis laboriosam? Dolores inventore nam numquam sed maxime explicabo nisi tempora cupiditate, fuga ab quae harum, aliquid debitis odit illo ipsa facilis laboriosam nulla? Iusto, saepe consequuntur.</p>
+        </div>
+    </div>
+  </main>
+
+{% endblock %}

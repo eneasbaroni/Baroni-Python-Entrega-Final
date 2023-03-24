@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} {{Profile}} {% endblock %}
+{% block content %}
+
+  <main id="profile">  
+    
+    <div class="profileContainer">   
+      
+      <h1>{{user.first_name|upper}} {{user.last_name|upper}}</h1>       
+      
+      {%if user.profile_pic %} <!-- verifico que haya una imagen para que no se genere error -->
+      <img src="{{user.profile_pic.url}}" alt="imagen de perfil">        
+      {%endif%} 
+
+      <div class="memberDetail">         
+        <div>
+          <p>Nombre de usuario: {{user.username}}</p>
+          <p>Email: {{user.email}}</p>  
+        </div>
+      </div>
+
+      <div class="listBtnsContainer">
+          <button class="editBtn">
+            <a href="/accounts/update">EDITAR</a>           
+          </button>         
+          <button class="editBtn">
+            <a href="/accounts/logout">LOGOUT</a>
+          </button>
+      </div>  
+        
+      
+      
+      
+    </div>     
+    <a href="/" class="homeBtn">Volver a Inicio</a>         
+    
+  </main>
+{% endblock %}
+  

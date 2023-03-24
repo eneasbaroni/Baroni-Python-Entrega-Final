@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{% static 'images/logo.svg' %}">
+  <!-- Fonts de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap'); </style>
+  <link type="text/css" href="{% static 'css/styles.css'%}" rel="stylesheet"/>
+  <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+  <header>    
+    <nav class="navbar">
+      <div class="navbarLinks">
+        <!-- <a href="/">INICIO</a> -->
+        <a href="/"><img src="{% static 'images/logo.svg' %}" alt="Logo"></a>
+        <a href="/obras/list-obras/">OBRAS</a>  
+        <!-- permiso para super user -->      
+        {% if user.is_superuser %}          
+          <a href="/clientes/list-clientes/">CLIENTES</a>        
+        {% endif %}
+        <a href="/equipo/list-equipo/">EQUIPO</a> 
+        <a href="/about/">ABOUT</a>
+        <!-- permiso para usuario logueado -->
+        {% if user.is_authenticated %}
+          <a href="/accounts/profile/">PROFILE</a> 
+        {% else %}
+          <a href="/accounts/login/">LOGIN</a>
+          <a href="/accounts/signup/">SIGNUP</a>
+        {% endif %}
+
+      </div>      
+      
+    </nav> 
+    <!-- search -->   
+    <form action="/obras/list-obras/" method="get">
+      <input type="text" name="search" placeholder="Buscar Obra">
+      <button type="submit">Buscar</button>
+    </form>
+  </header>
+
+  {% block content %} 
+  {% endblock %}
+
+  
+  <!--  Footer -->
+  
+  <footer>
+    <div class="footerLinks">
+      <a href="/">INICIO</a>
+      <a href="/obras/list-obras/">OBRAS</a>        
+      <a href="/clientes/list-clientes/">CLIENTES</a>        
+      <a href="/equipo/list-equipo/">EQUIPO</a>        
+      <a href="/about/">ABOUT</a>
+    </div>    
+
+    <div class="footerContact">
+      <h3>TELEFONO</h3>
+      <p>+54 9 3512668849</p>
+      <h3>EMAIL</h3>
+      <p>lepost@gmail.com</p>
+      <h3>DIRECCION</h3>
+      <p>742 Evergreen Terrace</p>
+    </div>
+
+    <div class="footerSocials">
+      <a href="https://www.facebook.com/">INSTAGRAM</a>
+      <a href="https://www.instagram.com/">FACEBOOK</a>        
+      <a href="https://ar.linkedin.com/">LINKEDIN</a>    
+    </div>
+    
+    <img src="{% static 'images/logo2.svg' %}" alt="Logo" class="footerLogo">
+
+    <div class="footerBottom">
+      <p clas>©2023  LEPOST ARQUITECTURA</p>
+      <a href="https://eneasbaroni.com.ar/" blank target="_blank">MADE BY ENEAS</a> 
+    </div>
+
+  </footer>
+  
+</body>
+</html>

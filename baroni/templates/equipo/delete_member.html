@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Eliminar Miembro {% endblock %}
+{% block content %}
+<main id="clientes">  
+  {% if request.method == "GET"%}
+    <h1>ELIMINAR MIEMBRO</h1> 
+
+    <!-- El permiso de superusuario se maneja desde views.py --> 
+    
+      <a href="/equipo/list-equipo">Listado de Miembros</a>
+      <h2>¿Esta seguro que desea eliminar el Miembro {{member.name}}?</h2>
+      <form action="" method="POST"> <!-- en acction no va nada ya qeu utiliza la misma url -->
+        {% csrf_token %}
+        <div class="form-group">
+          <button type="submit" className="addBtn">Eliminar</button>
+        </div>
+      </form>   
+
+  {% else %}
+    <h1>MIEMBRO ELIMINADO</h1>  
+    <a href="/equipo/list-equipo">Listado de Miembros</a>
+  {% endif %}
+  
+    </main>
+{% endblock %}
+  

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %} Editar Obra {% endblock %}
+{% block content %}
+<section class="section">
+  {% if request.method == "GET"%}  
+  
+    {%if request.user.is_superuser%}
+    <main id="form">
+
+      <h1>EDITAR OBRA</h1> 
+        <div class="formContainer">
+          <form action="" method="POST" enctype="multipart/form-data"> <!-- en acction no va nada ya que utiliza la misma url -->
+  
+            {% csrf_token %} 
+            <legend>FORMULARIO DE EDICION</legend>
+  
+            <table>
+              {{ form.as_table }} <!-- Formulario de Django -->              
+            </table> 
+              
+            <div class="form-group">
+              <button type="submit" className="addBtn">EDITAR</button>
+            </div>
+            
+          </form>
+          
+        </div>         
+        
+    </main>
+    {% else %}
+      <main>
+        <div class="mainLinks createPage">
+          <h1>NO TIENES PERMISOS PARA EDITAR OBRAS</h1>
+          <a href="/obras/list-obras">Volver a Obras</a>
+        </div>
+      </main>
+    {% endif %}
+
+  {% else %}
+
+    <main>
+
+      <div class="mainLinks createPage">
+        {%if message %} <!-- manejo de errores que envai django al verificar el formulario -->
+          <h1>ERROR AL EDITAR OBRA</h1> 
+          <h2>{{ message }}</h2>  
+          <a href="/obras/edit-obra/{{ id }}">Volver a Formulario</a>
+        {% else %}
+          <h1>OBRA EDITADA</h1>
+          <a href="/obras/list-obras">Volver a Obras</a>
+        {% endif %}
+      </div>
+      
+    </main>
+      
+  {% endif %}
+
+</section>
+{% endblock %}

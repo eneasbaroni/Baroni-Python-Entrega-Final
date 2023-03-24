@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} {{member.name}} {% endblock %}
+{% block content %}
+
+  <main id="member">  
+    
+    <!-- El permiso de superusuario se maneja desde views.py --> 
+    <div class="memberContainer">
+      
+      <h1>{{member.name|upper}} {{member.last_name|upper}}</h1> 
+      <p class="profesion">{{member.position|upper}}</p>
+      
+      {%if member.image%} <!-- verifico que haya una imagen para que no se genere error -->
+      <img src="{{member.image.url}}" alt="imagen del miembro">        
+      {%endif%} 
+
+      <div class="memberDetail">
+        <p class="memberBio">{{member.bio}}</p>   
+        <div>
+          <p>Telefono: {{member.phone}}</p>
+          <p>Email: {{member.email}}</p>
+        </div>
+      </div>
+
+      {%if request.user.is_superuser%}
+        <div class="listBtnsContainer">
+            <button class="editBtn">
+              <a href="/equipo/edit-member/{{member.id}}">EDITAR</a>           
+            </button>
+            <button class="deleteBtn">
+              <a href="/equipo/delete-member/{{member.id}}">ELIMINAR</a>
+            </button>
+        </div>   
+      {%endif%}
+      
+      
+    </div>     
+    <a href="/equipo/list-equipo" class="contactBtn">Volver a Equipo</a>            
+    
+  </main>
+{% endblock %}
+  

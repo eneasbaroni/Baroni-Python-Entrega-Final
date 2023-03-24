@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %} Editar Cliente {% endblock %}
+{% block content %}
+<section class="section">
+  {% if request.method == "GET"%}  
+  
+    <!-- AGREGAR PERMISO ADMINISTRADOR ->if request.user.is_superuser--> 
+    {% if  request.user.is_superuser %}
+      <main id="form">  
+
+        <h1>EDITAR CLIENTE</h1> 
+        <div class="formContainer">
+          <form action="" method="POST"> <!-- en acction no va nada ya que utiliza la misma url -->
+
+            {% csrf_token %} 
+            <legend>FORMULARIO DE CREACION</legend>
+
+            <table>
+              <!-- cargar form as table with the values -->
+              {{ form.as_table }}            
+            </table>
+              
+            <div class="form-group">
+              <button type="submit" className="addBtn">EDITAR</button>
+            </div>
+
+            
+          </form>
+          
+        </div> 
+
+        <div class="mainLinks">
+          <a href="/clientes/list-clientes">Volver a Clientes</a>
+        </div>
+
+      </main>
+
+    {% else %}
+
+      <main class="noPermiso">
+          <h1>NO TENES PERMISO PARA VER ESTA PAGINA</h1>          
+            <a href="/" class="homeBtn">Volver a Inicio</a>          
+      </main>
+      
+    {% endif %}
+   
+
+  {% else %}
+
+    <main>
+      <div class="mainLinks createPage"> 
+        {%if message %} <!-- manejo de errores que envai django al verificar el formulario -->
+          <h1>ERROR AL EDITAR CLIENTE</h1> 
+          <h2>{{ message }}</h2>  
+          <!-- redirigir al fomrulario de edicion. tomar id de la url -->
+          <a href="/clientes/edit-cliente/{{ id }}">Volver a Editar Cliente</a>          
+        {% else %}
+          <h1>CLIENTE EDITADO CON EXITO</h1>
+          <a href="/clientes/list-clientes">Volver a Lista de Clientes</a>
+        {% endif %}    
+      </div>
+    </main>  
+
+  {% endif %}
+
+
+</section>
+{% endblock %}
