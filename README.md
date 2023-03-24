@@ -116,3 +116,8 @@ Rutas:
 
 Para acceder al panel de administrador, o loguearse en la pagina como admin, usar el Usuario admin y el Pass admin123
 Para loguearse con un usuario que no sea admin, usar el usuario Eneas y el pass copenague125
+
+## Pruebas Realizadas
+Para ver las pruebas realizadas, ir a la carpeta tests, y abrir el archivo Casos de prueba.xlsx
+
+## Video Demostración
